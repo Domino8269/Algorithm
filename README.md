@@ -1,2 +1,2 @@
 # Algorithm
-Algorithm study (Java)
+Algorithm self-study (Java)

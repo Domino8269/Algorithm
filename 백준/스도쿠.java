@@ -15,7 +15,8 @@ public class Main {
 		for(int i=0;i<9;i++) {
 			for(int j=0;j<9;j++) {
 				ary[i][j]=sc.nextInt();
-				if(ary[i][j]==0) {	//0의 개수와 행렬 인덱스를 배열에 저장
+				// 0의 개수와 행렬 인덱스를 배열에 저장
+				if(ary[i][j]==0) {
 					zero[cnt][0]=i;
 					zero[cnt][1]=j;
 					cnt++;
@@ -27,30 +28,33 @@ public class Main {
 	}
 	
 	public static void sudoku(int depth) {
-		if(depth==cnt || cnt==0) {	//최대깊이(0의 개수만큼) 도달시 스도쿠 출력 후 프로그램 종료
+		// 최대깊이(0의 개수만큼) 도달시 스도쿠 출력 후 프로그램 종료
+		if(depth==cnt || cnt==0) {
 			printsudoku();
 			System.exit(0);
 		}
-		
-		for(int k=1;k<=9;k++) {	//1~9까지 숫자대입
+		// 1~9까지 숫자대입
+		for(int k=1;k<=9;k++) {
 			ary[zero[depth][0]][zero[depth][1]]=k;
-			if(checkNum(zero[depth][0], zero[depth][1])) {	//현재 숫자가 중복되었는지 확인. 중복되는 숫자가 없다면 재귀호출(다음 0 위치로 이동)
+			// 현재 숫자가 중복되었는지 확인. 중복되는 숫자가 없다면 재귀호출(다음 0 위치로 이동)
+			if(checkNum(zero[depth][0], zero[depth][1])) {
 				sudoku(depth+1);
 			}
 		}
-		ary[zero[depth][0]][zero[depth][1]]=0;	//9까지 시도했는데 들어갈 수 있는 숫자가 없는 경우 0으로 다시 초기화
+		// 9까지 시도했는데 들어갈 수 있는 숫자가 없는 경우 0으로 다시 초기화
+		ary[zero[depth][0]][zero[depth][1]]=0;
 	}
 	
 	public static boolean checkNum(int row, int column) {
-		
-		for(int i=0;i<9;i++) {	//같은 행 확인
+		// 같은 행 확인
+		for(int i=0;i<9;i++) {
 			if(ary[row][i]==ary[row][column] && i!=column) {
 				return false;
 			}
 		}
 		
-		
-		for(int i=0;i<9;i++) {	//같은 열 확인
+		// 같은 열 확인
+		for(int i=0;i<9;i++) {
 			if(ary[i][column]==ary[row][column] && i!=row) {
 				return false;
 			}
@@ -58,8 +62,8 @@ public class Main {
 		
 		int f_row=(row/3)*3;
 		int f_column=(column/3)*3;
-		
-		for(int i=f_row; i<f_row+3; i++) {	//같은 박스 확인
+		// 같은 박스 확인
+		for(int i=f_row; i<f_row+3; i++) {
 			for(int j=f_column;j<f_column+3;j++) {
 				if(ary[i][j]==ary[row][column] && (i!=row && j!=column)) {
 					return false;

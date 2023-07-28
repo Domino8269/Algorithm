@@ -21,24 +21,24 @@ public class Main {
 	}
 	
 	public static void dfs(int depth) {
-		if(depth==N) {	//마지막 행까지 퀸의 위치가 유효하다면 count를 증가시키고 리턴
+		// 마지막 행까지 퀸의 위치가 유효하다면 count를 증가시키고 리턴
+		if(depth==N) {
 			cnt++;
 			return;
 		}
+		
 		for(int i=1;i<=N;i++) {
 			arr[depth]=i;
-			
-			//퀸의 위치가 유효하다면 다음 행으로 이동 (depth는 행을 의미)
-			//그렇지 않으면 같은 행의 그 다음 열로 이동
+			// 퀸의 위치가 유효하다면 다음 행으로 이동.(depth는 행을 의미) 그렇지 않으면 같은 행의 그 다음 열로 이동
 			if(checkQueen(depth)) {
 				dfs(depth+1);
 			}
 		}
 	}
-	
-	public static boolean checkQueen(int depth) {	//현재 놓인 퀸의 위치가 유효한지 확인
+	// 현재 놓인 퀸의 위치가 유효한지 확인
+	public static boolean checkQueen(int depth) {
 		for(int i=0;i<depth;i++) {
-			//같은 열 or 대각선상에 위치하면 false
+			// 같은 열 or 대각선상에 위치하면 false
 			if(arr[i]==arr[depth] || Math.abs(arr[depth]-arr[i])== depth-i) {
 				return false;
 			}

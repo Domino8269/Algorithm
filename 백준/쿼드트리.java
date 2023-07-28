@@ -27,19 +27,20 @@ public class Main {
 	public static void quadTree(int N, int row, int column) {
 		boolean state = true;
 		int color = map[row][column];
-		
-		for(int i=row;i<row+N;i++) {	//0 혹은 1로 압축할 수 있는지 확인
+		// 0 혹은 1로 압축할 수 있는지 확인
+		for(int i=row;i<row+N;i++) {
 			for(int j=column;j<column+N;j++) {
 				if(map[i][j]!=color) {
 					state=false;
 				}
 			}
 		}
-		
-		if(state) {		//압축이 가능하다면 압축한 결과를 추가함
+		// 압축이 가능하다면 압축한 결과를 추가함
+		if(state) {
 			sb.append(map[row][column]);
 		}
-		else {		//압축이 불가능하다면 각 영역별로 4번 재귀호출
+		// 압축이 불가능하다면 각 영역별로 4번 재귀호출
+		else {
 			sb.append('(');
 			quadTree(N/2, row, column);
 			quadTree(N/2, row, column+N/2);

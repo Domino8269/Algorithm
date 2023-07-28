@@ -29,8 +29,8 @@ public class Main {
 	public static void color_paper(int N, int row, int column) {
 		boolean state = true;
 		int color = map[row][column];
-		
-		for(int i=row;i<row+N;i++) {	//색종이가 모두 같은색으로 채워져 있는지 확인
+		// 색종이가 모두 같은색으로 채워져 있는지 확인
+		for(int i=row;i<row+N;i++) {
 			for(int j=column;j<column+N;j++) {
 				if(map[i][j]!=color) {
 					state=false;
@@ -39,14 +39,16 @@ public class Main {
 		}
 		
 		if(state) {
-			if(map[row][column]==1) {	//파란색으로 채워졌다면 blue_count 아니라면 white_count를 증가
+			// 파란색으로 채워졌다면 blue_count 아니라면 white_count를 증가
+			if(map[row][column]==1) {
 				b_cnt++;
 			}
 			else {
 				w_cnt++;
 			}
 		}
-		else {	//각 영역별로 4번 재귀호출
+		// 각 영역별로 4번 재귀호출
+		else {
 			color_paper(N/2, row, column);
 			color_paper(N/2, row, column+N/2);
 			color_paper(N/2, row+N/2, column);

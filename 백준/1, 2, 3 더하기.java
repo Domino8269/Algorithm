@@ -15,8 +15,8 @@ public class Main {
 		
 		int T = Integer.parseInt(br.readLine());
 		dp[1] = 1;	// 1, 2, 3을 이용해 1을 만들 수 있는 경우의 수 
-		dp[2] = 2;	//		''		  2을 만들 수 있는 경우의 수 
-		dp[3] = 4;	// 		''		  3을 만들 수 있는 경우의 수 
+		dp[2] = 2;	// 1, 2, 3을 이용해 2를 만들 수 있는 경우의 수 
+		dp[3] = 4;	// 1, 2, 3을 이용해 3을 만들 수 있는 경우의 수
 			
 		for(int i=0; i<T; i++) {
 			int n = Integer.parseInt(br.readLine());
@@ -28,8 +28,10 @@ public class Main {
 		if(n <= 3) {
 			return dp[n];
 		}
-		if(dp[n]==0) {									// n을 1, 2, 3의 합으로 나타내는 경우의 수는 
-			dp[n] = find(n-3) + find(n-2) + find(n-1);	// 이전 3개의 경우의 수를 합한 값임 
+		// n을 1, 2, 3의 합으로 나타내는 경우의 수는 
+		if(dp[n]==0) {
+			// 이전 3개의 경우의 수를 합한 값임
+			dp[n] = find(n-3) + find(n-2) + find(n-1);
 		}
 		return dp[n];
 	}

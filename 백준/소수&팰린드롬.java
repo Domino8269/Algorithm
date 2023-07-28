@@ -11,24 +11,24 @@ public class Main {
 		
 		int N = sc.nextInt();
 		boolean[] arr = new boolean[MAX+1];
-		
-		for(int i=2; i<=MAX;i++) {	//에라토스테네스의 체 알고리즘을 이용한 소수 판별
+		// 에라토스테네스의 체 알고리즘을 이용한 소수 판별
+		for(int i=2; i<=MAX;i++) {
 			if(arr[i]==false) {
 				for(int j=2;i*j<=MAX;j++) {
 					arr[i*j]=true;
 				}
 			}
 		}
-		
-		for(int i=N;i<=MAX;i++) {	//소수이면서 팰린드롬인 수 출력
+		// 소수이면서 팰린드롬인 수 출력
+		for(int i=N;i<=MAX;i++) {
 			if(arr[i]==false && i!=1 && palindrome(i)) {
 				System.out.println(i);
 				break;
 			}
 		}
 	}
-	
-	public static boolean palindrome(int num) {	//팰린드롬 판별
+	// 팰린드롬 판별
+	public static boolean palindrome(int num) {
 		int tmp=num;
 		String s="";
 		

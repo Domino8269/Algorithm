@@ -17,12 +17,14 @@ public class Main {
 		
 		for(int i=0;i<N;i++) {
 			arr[i]=Integer.parseInt(st.nextToken());
-			if (stack.isEmpty()) {	//스택이 비었으면 0을 출력하고 현재 값을 스택에 push
+			// 스택이 비었으면 0을 출력하고 현재 값을 스택에 push
+			if (stack.isEmpty()) {
 				System.out.print(0+" ");
 				stack.push(i);
 				continue;
 			}
-			while(true) {	//스택을 비우면서 현재 탑의 신호를 수신할 수 있는 탑을 탐색
+			// 스택을 비우면서 현재 탑의 신호를 수신할 수 있는 탑을 탐색
+			while(true) {
 				if(stack.isEmpty()) {
 					System.out.print(0+" ");
 					stack.push(i);

@@ -12,23 +12,26 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		String str = br.readLine();
-		
-		String[] arr = str.split("\\-");		// '-'를 기준으로 문자열을 분리
+		// '-'를 기준으로 문자열을 분리
+		String[] arr = str.split("\\-");	
 		int[] sumArr = new int[arr.length];
 		
 		for(int i=0; i<arr.length; i++) {
-			String[] tempArr = arr[i].split("\\+");		// 위에서 분리된 문자열을 다시 '+'를 기준으로 분리
+			// 위에서 분리된 문자열을 다시 '+'를 기준으로 분리
+			String[] tempArr = arr[i].split("\\+");
 			
 			int num = 0;
 			for(String s : tempArr) {
-				num += Integer.parseInt(s);	// 분리된 각 구간을 더함 ('+' 연산끼리는 모두 더함)
+				// 분리된 각 구간을 더함 ('+' 연산끼리는 모두 더함)
+				num += Integer.parseInt(s);
 			}
-			
-			sumArr[i] = num;	// 임시 배열에 저장
+			// 임시 배열에 저장
+			sumArr[i] = num;
 		}
 		
 		int result = sumArr[0];
-		for(int i=1; i<sumArr.length; i++) {	// '-' 연산을 기준으로 나눠진 각 구간들의 합을 순차적으로 뺌 
+		// '-' 연산을 기준으로 나눠진 각 구간들의 합을 순차적으로 뺌 
+		for(int i=1; i<sumArr.length; i++) { 
 			result -= sumArr[i];
 		}
 		

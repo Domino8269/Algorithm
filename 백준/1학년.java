@@ -1,6 +1,6 @@
 /*
     백준 5557번: 1학년
-    Title: #dp
+    알고리즘 분류: #DP
  */
 import java.io.BufferedReader;
 import java.io.IOException;

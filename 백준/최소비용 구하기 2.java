@@ -91,7 +91,7 @@ public class Main {
                         dist[node.node] = dist[cur] + node.weight;
                         // 현재 노드가 부모 노드가 됨
                         parent[node.node] = cur;
-                        // 현재 노드를 우선순위 큐에 삽입
+                        // 다음 노드를 우선순위 큐에 삽입
                         pq.add(new Node(node.node, dist[node.node]));
                     }
                 }

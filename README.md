@@ -1,2 +1,1 @@
-# Algorithm
-Algorithm self-study (Java)
+# Java Algorithm Study

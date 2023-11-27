@@ -7,65 +7,61 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int N, M, R;
     static int[][] map;
-    static int[] dx = {0, 1, 0, -1};
-    static int[] dy = {1, 0, -1, 0};
+    static boolean[][] visited;
+    static int w;
+    static int h;
+    static int[] dirX = {0, 0, -1 ,1, -1, 1, -1, 1};
+    static int[] dirY = {-1, 1, 0, 0, 1, 1, -1, -1};
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        R = Integer.parseInt(st.nextToken());
-        map = new int[N][M];
-
-        for (int i = 0; i < N; i++) {
+        while(true) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < M; j++) {
-                map[i][j] = Integer.parseInt(st.nextToken());
+            w = Integer.parseInt(st.nextToken());
+            h = Integer.parseInt(st.nextToken());
+
+            if (w == 0 && h == 0) {
+                break;
             }
-        }
 
-        for (int i = 0; i < R; i++) {
-            rotate();
-        }
-
-        printMap();
-    }
-
-    public static void rotate() {
-        int stage = Math.min(N, M) / 2;
-
-        for (int i = 0; i < stage; i++) {
-            int row = i;
-            int col = i;
-            int temp = map[i][i];
-            int idx = 0;
-
-            while (idx < 4) {
-                int nRow = row + dx[idx];
-                int nCol = col + dy[idx];
-
-                if (nRow >= i && nRow < N - i && nCol >= i && nCol < M - i) {
-                    map[row][col] = map[nRow][nCol];
-                    row += dx[idx];
-                    col += dy[idx];
-                } else {
-                    idx++;
+            map = new int[h][w];
+            visited = new boolean[h][w];
+            for (int i = 0; i < h; i++) {
+                st = new StringTokenizer(br.readLine());
+                for (int j = 0; j < w; j++) {
+                    map[i][j] = Integer.parseInt(st.nextToken());
                 }
             }
 
-            map[i + 1][i] = temp;
+            int island_count = 0;
+            for(int i=0; i<h; i++) {
+                for(int j=0; j<w; j++) {
+
+                    if(!visited[i][j] && map[i][j] == 1) {
+                        island_count++;
+                        DFS(i, j);
+                    }
+                }
+            }
+
+            System.out.println(island_count);
         }
+
     }
 
-    public static void printMap() {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                System.out.print(map[i][j] + " ");
+    public static void DFS(int row, int col) {
+        visited[row][col] = true;
+
+        for(int i=0; i<8; i++) {
+            int newRow = dirX[i] + row;
+            int newCol = dirY[i] + col;
+
+            if(newRow >= 0 && newCol >= 0 && newRow < h && newCol < w &&
+                    !visited[newRow][newCol] && map[newRow][newCol] == 1) {
+                DFS(newRow, newCol);
             }
-            System.out.println();
         }
     }
 }
